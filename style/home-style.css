@@ -1,0 +1,39 @@
+
+html, body {
+    margin: 0; height: 100%; overflow: hidden
+    
+}
+
+html {
+    background-color: #F1F6F9;
+}
+
+.banner {
+    height: 100vmax;
+    background-color: #212A3E;
+    width: 150px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    transition: ease-in;
+    transition: 1s;
+    
+}
+
+.banner:target{
+    width: 300px;
+}
+
+
+.pfp-blob { 
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: black;
+    transition: ease-in;
+    transition: 0.1;
+
+}
+
+.pfp-blob:active{
+    margin-left: 100px;
+}
