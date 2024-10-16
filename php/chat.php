@@ -8,7 +8,7 @@ include 'db.php'; // Include your database connection file
 
 // Redirect if the user is not logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ../auth.php');
     exit;
 }
 
@@ -16,8 +16,8 @@ $user_id = $_SESSION['user_id'];
 
 // Fetch all groups the user is a member of
 $stmt = $pdo->prepare("SELECT groups.id, groups.name 
-                       FROM groups 
-                       JOIN group_members ON groups.id = group_members.group_id 
+                       FROM groups
+                       JOIN group_members ON groups.id = group_members.group_id
                        WHERE group_members.user_id = ?");
 $stmt->execute([$user_id]);
 $groups = $stmt->fetchAll(PDO::FETCH_ASSOC);

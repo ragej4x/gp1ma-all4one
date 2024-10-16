@@ -14,7 +14,7 @@ if (isset($_POST['register'])) {
     if ($stmt->execute([$first_name, $last_name, $username, $email, $password])) {
         $_SESSION['user_id'] = $pdo->lastInsertId();
         $_SESSION['username'] = $username;
-        header('Location: home.php');
+        header('Location: index.php');
         exit;
     } else {
         $error = "Registration failed. Please try again.";
@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
-        header('Location: home.php');
+        header('Location: index.php');
         exit;
     } else {
         $error = "Invalid email or password.";
@@ -44,7 +44,7 @@ if (isset($_POST['login'])) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
-            header('Location: home.php');
+            header('Location: index.php');
             exit;
         } else {
             // Invalid password
@@ -112,7 +112,7 @@ if (isset($_POST['login'])) {
         
 
     </body>
-    <script src="javascript/main.js"></script>
-    <script src="javascript/form.js"></script>
+    <script src="actions.js"></script>
+    <script src="form.js"></script>
 
 </html>
