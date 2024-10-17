@@ -16,7 +16,16 @@ if (isset($_POST['decline'])) {
     echo "Friend request declined!";
 }
 
-
-
 //test
 //wag i exect bka mag karoon ng data leak
+
+if (isset($_POST['accept'])) {
+    $request_id = $_POST['request_id'];
+
+    // Update the friend request status to accepted
+    $stmt = $pdo->prepare("UPDATE friends SET status = 'accepted' WHERE id = ?");
+    $stmt->execute([$request_id]);
+    echo "Friend request accepted!";
+}
+
+//
