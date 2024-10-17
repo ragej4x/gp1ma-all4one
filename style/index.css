@@ -1,14 +1,17 @@
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
-
-
+/*===================pannel=========================*/
 html, body {
     height: 100%;
     font-family: Arial, sans-serif;
+}
+
+html {
+    background-color:#394867;
 }
 
 .container {
@@ -22,28 +25,27 @@ html, body {
     display: flex;
     transition: flex 0.5s ease; 
     justify-content: center;
-
+    align-items: flex-start; /* Align items at the top */
 }
 
-
 .left {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    flex: 0.2; 
-    background-color: #FF6B6B;
+    flex: 0.3; 
+    background-color: #394867;
 
 }
 
 .middle {
-    flex: 2; 
-    background-color: #FFE66D;
+    flex: 2;
+    background-color: #9BA4B5;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .right {
     flex: 0.2; 
-    background-color: #4ECDC4;
-}
+    background-color: #394867;
 
+}
 
 .container .left:hover ~ .middle,
 .container .right:hover ~ .middle {
@@ -51,30 +53,31 @@ html, body {
 }
 
 .container .left:hover {
-    flex: 0.5;
-    
+    flex: 0.5;   
 }
 
 .container .right:hover {
     flex: 1; 
 }
 
-
 h2, h3 {
     color: white;
     font-size: 22px;
 }
 
-
-.profile{
+.profile {
+    border: solid #212A3E 4px;
     position: absolute;
-    width: 90px;
-    height: 90px;
+    width: 10vw; 
+    height: 10vw; 
+    max-width: 90px;
+    max-height: 90px;
     margin: 13px;
+    margin-left: -40px;
     background-color: black;
-    border-radius: 100%;
+    border-radius: 50%;
     transition: 0.5s;
-    opacity: 0;
+    opacity: 1;
     text-align: center;
 }
 
@@ -83,28 +86,81 @@ h2, h3 {
     margin-top: 265px;
     text-align: center;
     opacity: 0;
-    transition: 1s;
+    transition: 0.5s;
+    background-color:#212a3e00;
+    border: solid #212a3e00;
 }
 
-.container .left:hover .name{
+.container .left:hover .name {
     opacity: 1;
 }
 
-.container .left:hover .profile{
-    margin: 90px;
-    margin-left: 100px;
-    width: 150px;
-    height: 150px;
+.container .left:hover .profile {
+    margin: 80px;
+    margin-left: -70px;
+    width: 15vw; 
+    height: 15vw; 
+    max-width: 150px; 
+    max-height: 150px; 
+}
 
+.profile:hover {
+    opacity: 0.5;
+}
 
-
+/* Responsive Design  for mobule*/
+@media (max-width: 468px) {
 
 }
 
+@media (max-width: 480px) {
+    .profile {
+        width: 25vw;
+        height: 25vw;
+        max-width: 50px; 
+        max-height: 50px;
+    }
+
+    h2 {
+        font-size: 18px; 
+    }
+}
+/*===================pannel left=========================*/
 
 
-.profile:hover{
-    opacity: 0.5;
+
+
+/*===================feed=========================*/
+
+h2 {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    width: 300px;
+    height: 60;
+    position: absolute;
+    z-index: 5;
+    border: #394867 solid;
+    text-align: center;
+    background-color: #394867;
+}
+
+.feed-container {
+    margin-top: 100px;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Stacking in a column */
+    margin: 30px;
+    box-shadow: 10px 10px 10px 2px #394867;
+}
+
+.fb-page {
+    gap: 20px;
+    width: 100%; /* Full width of the container */
+    height: 100%; /* Fixed height */
+    border: none; /* Remove iframe border */
+    overflow: hidden; /* Hide overflow */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
+    background-color: #fff; /* Optional: background color */
 }
 
 

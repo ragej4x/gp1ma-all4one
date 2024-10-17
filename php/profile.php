@@ -31,18 +31,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute([$first_name, $last_name, $username, $email, $bio, $user_id]);
     }
 
-    // Update session username if changed //sign ng bug if d nag cchange nag ooverflow ung buffer
+    // Update session username if changed
     $_SESSION['username'] = $username;
 
     // Handle profile picture upload
     if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0) {
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["profile_pic"]["name"]);
-        
+
         // Validate file type
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
-        
+
         if (in_array($imageFileType, $allowed_types)) {
             // Move uploaded file
             if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target_file)) {
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $stmt->execute([$_FILES["profile_pic"]["name"], $user_id]);
                 // Redirect to the same page to refresh the data
                 header('Location: profile.php'); // Change to the correct path if necessary
-                exit; // Make sure to exit after the redirect
+                exit;
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
@@ -76,10 +76,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="sidebar">
 
             <?php
+            // Set profile picture path with fallback
+            $profile_pic = !empty($user['profile_pic']) && file_exists("uploads/" . $user['profile_pic']) 
+            ? "uploads/" . htmlspecialchars($user['profile_pic']) 
+            : "uploads/default-profile.png"; // Fallback image if profile pic is missing
+
             // Display profile picture
-            if (!empty($user['profile_pic'])) {
-                echo "<img class='profile-pic' src='uploads/" . htmlspecialchars($user['profile_pic']) . "' alt='Profile Picture'>";
-            }
+            echo "<img class='profile-pic' src='$profile_pic' alt='Profile Picture'>";
             ?>
 
             <div><?php echo '<h2 class="name">' . htmlspecialchars($user['first_name']) . str_repeat("&nbsp;", 1) . htmlspecialchars($user['last_name']) . '</h2>' ?></div>
@@ -117,3 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </body>
 </html>
+
+
+
+
