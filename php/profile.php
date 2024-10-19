@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 include 'db.php';
 
@@ -7,21 +10,18 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Fetch current user details
 $user_id = $_SESSION['user_id'];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->execute([$user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Handle profile update
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $bio = $_POST['bio']; // Get bio from POST data
+    $bio = $_POST['bio']; 
 
-    // Optional password change
     if (!empty($_POST['password'])) {
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $stmt = $pdo->prepare("UPDATE users SET first_name = ?, last_name = ?, username = ?, email = ?, bio = ?, password = ? WHERE id = ?");
@@ -31,25 +31,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute([$first_name, $last_name, $username, $email, $bio, $user_id]);
     }
 
-    // Update session username if changed
     $_SESSION['username'] = $username;
 
-    // Handle profile picture upload
     if (isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] == 0) {
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["profile_pic"]["name"]);
 
-        // Validate file type
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
 
         if (in_array($imageFileType, $allowed_types)) {
-            // Move uploaded file
             if (move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target_file)) {
                 $stmt = $pdo->prepare("UPDATE users SET profile_pic = ? WHERE id = ?");
                 $stmt->execute([$_FILES["profile_pic"]["name"], $user_id]);
-                // Redirect to the same page to refresh the data
-                header('Location: profile.php'); // Change to the correct path if necessary
+                header('Location: profile.php'); 
                 exit;
             } else {
                 echo "Sorry, there was an error uploading your file.";
@@ -103,16 +98,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="email" placeholder="Email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>">
             <br>
             <label for="bio">Bio:</label><br>
-            <textarea type="text" rows="4" cols="69" name="bio"><?php echo htmlspecialchars(isset($user['bio']) ? $user['bio'] : ''); ?></textarea>
+            <textarea type="text" rows="4" cols="68" name="bio"><?php echo htmlspecialchars(isset($user['bio']) ? $user['bio'] : ''); ?></textarea>
             <br>
             <br>
 
             <label for="password">Password:</label><label for="password" id="p2">Confirm Password:</label><br>
 
             <input type="password" name="password" id="pass"> <input type="password" id="confirm-pass">
-            <input type="file" name="profile_pic">
-            <button type="submit">Update Profile</button>
-
+            <br>
+            <label for="file">Upload Profile Picture:</label><br><br>
+            <input type="file" name="profile_pic" value="Upload Profile">
+            <button class="btn"  type="submit">Update Profile</button>
         </form>
     </div>
 

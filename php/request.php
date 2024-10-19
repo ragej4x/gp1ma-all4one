@@ -28,4 +28,3 @@ if (isset($_POST['accept'])) {
     echo "Friend request accepted!";
 }
 
-//

@@ -111,9 +111,21 @@ label, input {
 
 input {
     margin-bottom: 30px;
+    height: 20px;
+
 
 }
 
 input[type="password"]{
     margin-top: 10px;
 }
+
+
+
+.btn {
+    max-width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+

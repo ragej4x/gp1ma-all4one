@@ -58,3 +58,34 @@ CREATE TABLE `friends` (
     FOREIGN KEY (`friend_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
     UNIQUE KEY `user_friend` (`user_id`, `friend_id`)
 ) ENGINE=InnoDB;
+
+
+
+/* for chat db */
+CREATE TABLE users (
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE friends (
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT(11) UNSIGNED NOT NULL,
+    friend_id INT(11) UNSIGNED NOT NULL,
+    status ENUM('pending', 'accepted', 'declined') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (friend_id) REFERENCES users(id) ON DELETE CASCADE,
+    UNIQUE KEY user_friend (user_id, friend_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE messages (
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    sender_id INT(11) UNSIGNED NOT NULL,
+    receiver_id INT(11) UNSIGNED NOT NULL,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
