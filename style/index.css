@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
+    overflow: hidden;
 }
 /*===================pannel=========================*/
 html, body {
@@ -57,7 +57,7 @@ html {
 }
 
 .container .right:hover {
-    flex: 1; 
+    flex: 0.6; 
 }
 
 h2, h3 {
@@ -149,12 +149,11 @@ h2 {
     position: relative;
     display: flex;
     flex-direction: column; /* Stacking in a column */
-    margin: 30px;
+    margin: 50px;
     box-shadow: 10px 10px 10px 2px #394867;
 }
 
-.fb-page {
-    gap: 20px;
+.fb-page { 
     width: 100%; /* Full width of the container */
     height: 100%; /* Fixed height */
     border: none; /* Remove iframe border */
@@ -164,3 +163,107 @@ h2 {
 }
 
 
+.ico-text {
+    position: absolute;
+
+}
+.icons{
+    margin-left: 20px;
+    width: 50px;
+    width: 50px;
+}
+
+#book, #chat, #professor, #tasks, #files{
+    margin-top: 50px;
+    transition: all 0.3 ease;
+}
+
+:hover .book-cont, .chat-cont, .professor-cont, .tasks-cont, .files-cont{
+    cursor: pointer;
+}
+
+.book-cont:hover #book{
+    mix-blend-mode: multiply;
+    content: url('../icons/book.gif');
+    
+}
+
+.chat-cont:hover #chat{
+    mix-blend-mode: multiply;
+    content: url('../icons/chat.gif');
+}
+
+.professor-cont:hover #professor{
+    mix-blend-mode: multiply;
+    content: url('../icons/professor.gif');
+}
+
+.tasks-cont:hover #tasks{
+    mix-blend-mode: multiply;
+    content: url('../icons/tasks.gif');
+}
+
+.files-cont:hover #files{
+    mix-blend-mode: multiply;
+    content: url('../icons/folder.gif');
+}
+
+
+.container .right:hover #book, #chat, #professor, #tasks, #files{
+    margin-right: 300px;
+}
+
+
+
+#a1 {
+    opacity: 0;
+    transition: 0.1s ease;
+    margin-top: -45px;
+} 
+
+#b2 {
+    opacity: 0;
+    transition: 0.2s ease;
+    margin-top: -45px;
+}
+
+#c3 {
+    opacity: 0;
+    transition: 0.3s ease;
+    margin-top: -45px;
+} 
+
+
+#d4 {
+    opacity: 0;
+    transition: 0.4s ease;
+    margin-top: -45px;
+}
+
+
+
+#e5{
+    opacity: 0;
+    transition: 0.5s ease;
+    margin-top: -45px;
+}
+
+.container .right:hover #a1, 
+.container .right:hover #b2,
+.container .right:hover #c3,
+.container .right:hover #d4,
+.container .right:hover #e5{
+    opacity: 1;
+    margin-left: 100px;
+    
+}
+
+.book-cont:hover #a1, 
+.chat-cont:hover #b2,
+.professor-cont:hover #c3,
+.tasks-cont:hover #d4,
+.files-cont:hover #e5{
+    color: #8398bf;
+    scale: 0.9;
+    
+}
