@@ -125,9 +125,6 @@ h2, h3 {
         font-size: 18px; 
     }
 }
-/*===================pannel left=========================*/
-
-
 
 
 /*===================feed=========================*/
@@ -136,7 +133,7 @@ h2 {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     width: 300px;
-    height: 60;
+    height: 30px;
     position: absolute;
     z-index: 5;
     border: #394867 solid;
@@ -145,22 +142,28 @@ h2 {
 }
 
 .feed-container {
-    margin-top: 100px;
+    margin-top: 40px;
     position: relative;
     display: flex;
     flex-direction: column; /* Stacking in a column */
-    margin: 50px;
     box-shadow: 10px 10px 10px 2px #394867;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .fb-page { 
-    width: 100%; /* Full width of the container */
-    height: 100%; /* Fixed height */
-    border: none; /* Remove iframe border */
-    overflow: hidden; /* Hide overflow */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
-    background-color: #fff; /* Optional: background color */
+    
+    width: 500px; 
+    height: 500px;
+    border: none; 
+    overflow: hidden; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; 
+    
 }
+
+/*===================pannel right=========================*/
+
 
 
 .ico-text {

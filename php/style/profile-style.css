@@ -1,6 +1,7 @@
 html, body {
     font-size: small;
     font-family: Arial, sans-serif;
+    
 }
 html {
     max-width: fit-content;
@@ -12,7 +13,7 @@ html {
     border-radius: 10px;
     background-color: #394867;
     width: 900px;
-    height: 650px;
+    height: 500px;
     box-shadow: 10px 10px 5px 5px #c7cacf;
     color: #F1F6F9;
 }
@@ -45,7 +46,7 @@ html {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     width: 300px;
-    height: 650px;
+    height: 500px;
     background-color: #212A3E;
 
 }
@@ -65,7 +66,7 @@ html {
 }
 #return{
     margin-left: 90px;
-    margin-top: 220px;
+    margin-top: 120px;
     text-align: center;
     border: solid #394867;
     width: 100px;
@@ -92,13 +93,14 @@ html {
 
 
 form {
+    
     margin-left: 350px;
 }
 
 label, input {
     width: 240px;
     border-radius: 10px;
-
+    
 
 }
 
@@ -112,7 +114,7 @@ label, input {
 input {
     margin-bottom: 30px;
     height: 20px;
-
+    outline: none;
 
 }
 

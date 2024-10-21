@@ -1,0 +1,9 @@
+{
+  "build": {
+    "env": {
+      "DATABASE_URL": "your-database-connection-string"
+    },
+    "command": "php -S 0.0.0.0:3000 -t public"
+  }
+}
+

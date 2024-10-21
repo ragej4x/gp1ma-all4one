@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="email" placeholder="Email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>">
             <br>
             <label for="bio">Bio:</label><br>
-            <textarea type="text" rows="4" cols="68" name="bio"><?php echo htmlspecialchars(isset($user['bio']) ? $user['bio'] : ''); ?></textarea>
+            <textarea type="text" rows="4" cols="60" name="bio"><?php echo htmlspecialchars(isset($user['bio']) ? $user['bio'] : ''); ?></textarea>
             <br>
             <br>
 
