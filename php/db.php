@@ -9,11 +9,10 @@ $user = 'jimbot'; // Username
 $pass = 'NNLBeuMGYlyLIRptsCxYOLYLQNBRQzpV'; // Password
 
 try {
-    // Create a new PDO instance
     $pdo = new PDO("mysql:host=$host;port=22208;dbname=$dbname;charset=utf8mb4", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Database connection successful!";
 } catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+    error_log("Database connection failed: " . $e->getMessage()); // Log the error
+    die("Database connection failed. Check the logs for more details.");
 }
-?>
