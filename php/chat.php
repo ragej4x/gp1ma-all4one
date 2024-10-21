@@ -1,12 +1,10 @@
 <?php
-// Start the session if not already active
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include 'db.php'; // Include your database connection file
+include 'db.php'; 
 
-// Redirect if the user is not logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: ../auth.php');
     exit;
@@ -14,7 +12,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Fetch all groups the user is a member of
 $stmt = $pdo->prepare("SELECT groups.id, groups.name 
                        FROM groups
                        JOIN group_members ON groups.id = group_members.group_id
@@ -30,8 +27,6 @@ $groups = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Chat Dashboard</title>
 </head>
 <body>
-    <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
-
     <h2>Your Groups</h2>
     <ul>
         <?php if (count($groups) > 0): ?>

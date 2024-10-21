@@ -1,15 +1,20 @@
 CREATE DATABASE gp1ma_db;
 USE gp1ma_db;
 
+-- Table: users
 CREATE TABLE users (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,  -- Adding email field
     password VARCHAR(255) NOT NULL,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
+    profile_pic VARCHAR(255) DEFAULT NULL,
+    bio TEXT DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
+-- Table: groups
 CREATE TABLE groups (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -18,6 +23,7 @@ CREATE TABLE groups (
     FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+-- Table: group_members
 CREATE TABLE group_members (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     group_id INT(11) UNSIGNED NOT NULL,
@@ -28,6 +34,7 @@ CREATE TABLE group_members (
     UNIQUE (group_id, user_id) 
 ) ENGINE=InnoDB;
 
+-- Table: messages (for group messages)
 CREATE TABLE messages (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     group_id INT(11) UNSIGNED NOT NULL,
@@ -38,37 +45,7 @@ CREATE TABLE messages (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
-
-
-/* MANUAL INPUT PAG D GUMANA */
-`bio` TEXT DEFAULT NULL,
-`profile_pic` VARCHAR(255) DEFAULT NULL,
-`created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-
-/*=========*/
-
-
-CREATE TABLE `friends` (
-    `id` INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    `user_id` INT(11) UNSIGNED NOT NULL,
-    `friend_id` INT(11) UNSIGNED NOT NULL,
-    `status` ENUM('pending', 'accepted', 'declined') DEFAULT 'pending',
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`friend_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
-    UNIQUE KEY `user_friend` (`user_id`, `friend_id`)
-) ENGINE=InnoDB;
-
-
-
-/* for chat db */
-CREATE TABLE users (
-    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
-
+-- Table: friends
 CREATE TABLE friends (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id INT(11) UNSIGNED NOT NULL,
@@ -80,7 +57,7 @@ CREATE TABLE friends (
     UNIQUE KEY user_friend (user_id, friend_id)
 ) ENGINE=InnoDB;
 
-CREATE TABLE messages (
+CREATE TABLE private_messages (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     sender_id INT(11) UNSIGNED NOT NULL,
     receiver_id INT(11) UNSIGNED NOT NULL,

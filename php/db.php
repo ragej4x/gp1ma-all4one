@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost';
-$dbname = 'gp1ma_db';
-$user = 'root';
-$pass = '';
+$host = 'mysql.railway.internal'; // Your Railway host
+$dbname = 'gp1ma_db'; // Your Railway database name
+$user = 'jimbot'; // Your Railway username
+$pass = 'NNLBeuMGYlyLIRptsCxYOLYLQNBRQzpV'; // Your Railway password
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
